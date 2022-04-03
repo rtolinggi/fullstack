@@ -6,8 +6,8 @@ const axiosConfig = axios.create({
   withCredentials: true,
 });
 
-const getAllKaryawan = async () => {
-  const response = await axiosConfig.get();
+const getAllKaryawan = async (config) => {
+  const response = await axiosConfig.get("/", config);
   return response.data;
 };
 

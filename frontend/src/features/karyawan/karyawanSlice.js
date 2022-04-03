@@ -2,20 +2,26 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import karyawanService from "../../helper/karyawanService";
 
 const initialState = {
-  data: [],
+  karyawan: null,
   isSuccess: false,
   isLoading: false,
+  isError: false,
+  message: "",
 };
 
 export const getKaryawan = createAsyncThunk(
   "karyawan/getKaryawan",
   async (arg, { rejectWithValue }) => {
     try {
-      const response = await karyawanService.getAllKaryawan();
-      const result = await response.data;
-      return result;
+      return await karyawanService.getAllKaryawan(arg);
     } catch (error) {
-      rejectWithValue(error.response.data);
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return rejectWithValue(message);
     }
   }
 );
@@ -23,23 +29,30 @@ export const getKaryawan = createAsyncThunk(
 export const karyawanSlice = createSlice({
   name: "karyawan",
   initialState,
-  reducers: {},
-  extraReducers: {
-    [getKaryawan.pending]: (state, { payload }) => {
-      state.data = [];
-      state.isSuccess = false;
-      state.isLoading = true;
-    },
-    [getKaryawan.fulfilled]: (state, { payload }) => {
-      state.data = payload;
-      state.isSuccess = true;
+  reducers: {
+    reset: (state) => {
       state.isLoading = false;
-    },
-    [getKaryawan.rejected]: (state, { payload }) => {
-      state.data = [];
       state.isSuccess = false;
-      state.isLoading = false;
+      state.isError = false;
     },
+  },
+  extraReducers: (builder) => {
+    //Register
+    builder
+      .addCase(getKaryawan.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getKaryawan.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.karyawan = payload;
+      })
+      .addCase(getKaryawan.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = payload;
+        state.karyawan = null;
+      });
   },
 });
 

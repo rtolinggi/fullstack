@@ -1,5 +1,5 @@
 import { UserAddIcon } from "@heroicons/react/solid";
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import jwtDecode from "jwt-decode";
 import { getToken } from "../../features/token/tokenSlice";
@@ -7,52 +7,37 @@ import { getKaryawan } from "../../features/karyawan/karyawanSlice";
 
 const Karyawan = () => {
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.token);
-  const karyawan = useSelector((state) => state.karyawan);
+  const clickRef = React.useRef(null);
+  const { token } = useSelector((state) => state.token);
+  const { karyawan } = useSelector((state) => state.karyawan);
 
-  const cekExpired = () => {
-    try {
-      const { exp } = jwtDecode(token.data.token);
-      console.log(exp);
+  useEffect(() => {
+    const getDataKaryawan = async () => {
+      const { exp } = jwtDecode(token.token);
       const currentDate = new Date();
       if (exp * 1000 < currentDate.getTime()) {
-        return false;
+        const newToken = await dispatch(getToken()).then((res) => {
+          return res.payload.token;
+        });
+        dispatch(
+          getKaryawan({
+            headers: {
+              Authorization: `Bearer ${newToken}`,
+            },
+          })
+        );
       } else {
-        return true;
+        dispatch(
+          getKaryawan({
+            headers: {
+              Authorization: "Bearer " + token.token,
+            },
+          })
+        );
       }
-    } catch (error) {
-      return console.log("no data");
-    }
-  };
-
-  const getDataKaryawan = async () => {
-    const exp = cekExpired();
-    if (!token.data?.token || !exp) {
-      const token = dispatch(getToken()).thean((res) => {
-        const token = res.data.token;
-        console.log(token);
-        return token;
-      });
-      const dataKaryawan = await dispatch(
-        getKaryawan({
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        })
-      );
-      console.log(dataKaryawan);
-    } else {
-      const dataKaryawan = await dispatch(
-        getKaryawan({
-          headers: {
-            Authorization: "Bearer " + token.data.token,
-          },
-        })
-      );
-      console.log(dataKaryawan);
-      console.log();
-    }
-  };
+    };
+    getDataKaryawan();
+  }, []);
 
   return (
     <>
@@ -65,7 +50,8 @@ const Karyawan = () => {
             <button
               type="submit"
               className="text-white flex items-center outline-none bg-gradient-to-r from-teal-500 via-teal-600 to-teal-700 hover:bg-gradient-to-br focus:ring-4 focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-md text-sm px-4 py-2.5  mr-2"
-              onClick={getDataKaryawan}
+              // onClick={getDataKaryawan}
+              ref={clickRef}
             >
               <UserAddIcon className="w-4 h-4 mr-2" />
               Add
@@ -120,8 +106,8 @@ const Karyawan = () => {
                 </tr>
               </thead>
               <tbody>
-                {karyawan?.data?.data
-                  ? karyawan.data.data.map((el, item) => {
+                {karyawan?.data
+                  ? karyawan.data.map((el, item) => {
                       return (
                         <tr
                           key={item}
