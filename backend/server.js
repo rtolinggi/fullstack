@@ -1,4 +1,7 @@
 import express from "express";
+import { fileURLToPath } from "url";
+import path from "path";
+import { dirname } from "path";
 import { goalRoute, userRoute, karyawanRoute } from "./routes/index.js";
 import color from "colors";
 import { errorHandler } from "./middleware/errorMiddleware.js";
@@ -6,6 +9,9 @@ import connectDB from "./config/db.js";
 import cookieParser from "cookie-parser";
 import "dotenv/config";
 import cors from "cors";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const whiteList = [
   "https://herbalsehat.store",
@@ -36,6 +42,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api/users", userRoute);
 app.use("/api/goals", goalRoute);
 app.use("/api/karyawan", karyawanRoute);
+
+//Serve Frontend
+if (process.env.NODE_ENV === "PRODUCTION") {
+  app.use(express.static(path.join(__dirname, "../frontend/build")));
+  app.get("*", (req, res) =>
+    res.sendFile(
+      path.resolve(__dirname, "../", "frontend", "build", "index.html")
+    )
+  );
+} else {
+  app.get("/", (req, res) => res.send("Please Set to Production"));
+}
 
 //handling error (middleware)
 app.use(errorHandler);
