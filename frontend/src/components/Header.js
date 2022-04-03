@@ -7,7 +7,7 @@ import {
   closeSidebar,
   openSidebar,
 } from "../features/dashboard/dashboardSlice";
-import { logout, reset } from "../features/auth/authSlice";
+import { logout } from "../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
@@ -19,8 +19,10 @@ const Header = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    dispatch(logout()).then(() => {
-      navigate("/");
+    dispatch(logout()).then((res) => {
+      if (res.error || res.payload.success) {
+        navigate("/");
+      }
     });
   };
 

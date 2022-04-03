@@ -142,8 +142,16 @@ const getMe = expressAsyncHandler(async (req, res) => {
 //@access   Public
 const Logout = expressAsyncHandler(async (req, res) => {
   const refreshToken = req.cookies.refreshToken;
+  if (!refreshToken) {
+    res.status(401);
+    throw new Error("Youre Not Login");
+  }
+  const user = await Users.findOne({ refresh_token: refreshToken }).exec();
+  if (!user) {
+    res.status(401);
+    throw new Error("Token Not Valid");
+  }
   try {
-    const user = await Users.findOne({ refresh_token: refreshToken }).exec();
     await Users.findByIdAndUpdate(
       user.id,
       { refresh_token: "" },

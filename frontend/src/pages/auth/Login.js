@@ -1,16 +1,18 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import {
-  ExclamationIcon,
   EyeIcon,
   EyeOffIcon,
   LockClosedIcon,
   MailIcon,
-  XCircleIcon,
 } from "@heroicons/react/solid";
 import ImageLogin from "../../assets/images/login.svg";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, reset } from "../../features/auth/authSlice";
+import Button from "../../components/Button";
+import Message from "../../components/Message";
+import Input from "../../components/Input";
+import CheckBox from "../../components/CheckBox";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -88,74 +90,37 @@ const Login = () => {
             Please Insert Youre Credential {closeMessage.toString()}
           </p>
           {user || closeMessage ? null : (
-            <div
-              id="message"
-              className="flex items-center p-2.5 -mb-4 bg-red-100 rounded-sm dark:bg-red-200 w-full mt-4 border-l-4 border-l-red-400"
-            >
-              <ExclamationIcon className="flex-shrink-0 w-5 h-5 text-red-700 dark:text-red-800" />
-              <div className="ml-3 text-xs -tracking-tighter font-medium text-red-700 dark:text-red-800">
-                {message}
-              </div>
-              <button
-                type="button"
-                onClick={() => setCloseMessage(true)}
-                className="ml-auto -mx-1.5 -my-1.5 bg-red-100 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8 dark:bg-red-200 dark:text-red-600 dark:hover:bg-red-300"
-              >
-                <XCircleIcon className="w-5 h-5" />
-              </button>
-            </div>
+            <Message message={message} onClick={() => setCloseMessage(true)} />
           )}
           <hr className="text-slate-400 border-1 w-full mt-6" />
           <div className="space-y-4 w-full mt-6">
-            <div className="relative flex flex-col w-full">
-              <label
-                htmlFor="email"
-                className="text-xs text-gray-700 font-medium -tracking-tighter mb-1"
-              >
-                Email
-              </label>
-              <MailIcon className="absolute left-0 top-7 w-5 h-5 text-slate-500 ml-2" />
-              <input
-                id="email"
-                name="email"
-                type="email"
-                placeholder="Email"
-                className="bg-slate-200/70 py-2 px-2 text-sm pl-8 font-normal text-slate-700 outline-none focus:border focus:border-teal-200 focus:ring focus:ring-teal-100 focus:bg-white rounded-md "
-                autoComplete="email"
-                value={email}
-                onChange={onChange}
-              />
-            </div>
-            <div className="relative flex flex-col w-full">
-              <label
-                htmlFor="password"
-                className="text-xs text-gray-700 font-medium -tracking-tighter mb-1"
-              >
-                Password
-              </label>
-              <LockClosedIcon className="absolute left-0 top-7 w-5 h-5 text-slate-500 ml-2" />
-              <input
-                id="password"
-                name="password"
-                type={showPassword ? "text" : "password"}
-                placeholder="Password"
-                autoComplete="new-password"
-                className="bg-slate-200/70 py-2 px-2 pl-8 text-sm font-normal text-slate-700 outline-none focus:border focus:border-teal-200 focus:ring focus:ring-teal-100 focus:bg-white rounded-md"
-                value={password}
-                onChange={onChange}
-              />
-              {handlePasswordShow()}
-            </div>
+            <Input
+              inputType="email"
+              label="Email"
+              inputName="email"
+              placeholder="Email"
+              autoComplete="email"
+              onChange={onChange}
+              value={email}
+              leftIcon={
+                <MailIcon className="absolute left-0 top-7 w-5 h-5 text-slate-500 ml-2" />
+              }
+            />
+            <Input
+              inputType={showPassword ? "text" : "password"}
+              label="Password"
+              inputName="password"
+              placeholder="Password"
+              autoComplete="new-password"
+              onChange={onChange}
+              value={password}
+              leftIcon={
+                <LockClosedIcon className="absolute left-0 top-7 w-5 h-5 text-slate-500 ml-2" />
+              }
+              rightIcon={handlePasswordShow()}
+            />
             <div className="flex justify-between items-center w-full">
-              <div className="flex items-center">
-                <input
-                  type="checkbox"
-                  className="accent-teal-600 outline-none focus:ring-[1px] focus:ring-teal-500"
-                />
-                <label className="ml-1 text-sm text-slate-700 font-normal ">
-                  Remember me
-                </label>
-              </div>
+              <CheckBox>Remember me</CheckBox>
               <NavLink
                 to={"/forgot"}
                 className="ml-1 text-sm text-teal-700 font-medium outline-none focus:ring-[1px] focus:ring-teal-200 "
@@ -164,11 +129,7 @@ const Login = () => {
               </NavLink>
             </div>
           </div>
-          <button
-            type="submit"
-            disabled={isLoading}
-            className="text-white outline-none bg-gradient-to-r from-teal-500 via-teal-600 to-teal-700 hover:bg-gradient-to-br focus:ring-4 focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-8 py-2.5 w-full mr-2 mt-6 lg:w-fit lg:self-start"
-          >
+          <Button disabled={isLoading}>
             {isLoading ? (
               <>
                 <svg
@@ -192,7 +153,7 @@ const Login = () => {
             ) : (
               "Login"
             )}
-          </button>
+          </Button>
           <hr className="text-slate-400 border-1 w-full mt-6" />
           <p className="text-xs text-slate-600 -tracking-tighter font-medium mt-6 text-center">
             Don't have an Account ?{" "}

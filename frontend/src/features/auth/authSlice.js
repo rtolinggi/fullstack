@@ -110,12 +110,22 @@ export const authSlice = createSlice({
       });
 
     //Logout
-    builder.addCase(logout.fulfilled, (state, { payload }) => {
-      state.isLoading = false;
-      state.isSuccess = true;
-      state.message = payload;
-      state.user = null;
-    });
+    builder
+      .addCase(logout.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(logout.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message = payload;
+        state.user = null;
+      })
+      .addCase(logout.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+        state.message = payload;
+        state.user = null;
+      });
   },
 });
 
