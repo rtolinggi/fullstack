@@ -1,0 +1,29 @@
+###
+GET http://127.0.0.1:5000/api/goals
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMWU1YTJjMzkwY2EyODFiNThjNzdiOCIsImlhdCI6MTY0NjE1OTM1NCwiZXhwIjoxNjQ2MTU5Mzc0fQ.vjWbz6FCeV-FUNvdeVWLr_MSykkdVsvUUJxRexidUcg
+
+###
+POST http://127.0.0.1:5000/api/goals
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMWU1YTJjMzkwY2EyODFiNThjNzdiOCIsImlhdCI6MTY0NjE1Nzk0OCwiZXhwIjoxNjQ2MTU3OTY4fQ.reMFyGa9EtmElaJriV_L3MEKRW7O6qH3cYMFgdku8ns
+Accept: application/json
+Content-Type: application/json
+
+{
+    "text":" Next Belajar Middleware "
+}
+
+###
+PUT  http://127.0.0.1:5000/api/goals/620e0e54081b95915c00c4d2
+Authorization: Bearer
+Accept: application/json
+Content-Type: application/json
+
+{
+    "text":"Next Authemtication Update"
+}
+
+###
+DELETE   http://127.0.0.1:5000/api/goals/620e0e54081b95915c00c4d2
+Authorization: Bearer
+
+

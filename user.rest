@@ -1,0 +1,81 @@
+###
+POST http://127.0.0.1:5000/api/users/register
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name":"user",
+  "email":"rtolinggi91@gmail.com",
+  "password":"password",
+  "confirmPassword":"password"
+}
+
+###
+GET http://127.0.0.1:5000/api/users/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjE2ZGJjYjc2OWExMmIzYzI2ODA1ZSIsImlhdCI6MTY0NjM1ODEzOCwiZXhwIjoxNjQ2MzU4MTU4fQ.bXFUYEGpCVOA9ww_m8ezcC6ngQwTsttQ-C6droRgMQM
+
+###
+POST  http://127.0.0.1:5000/api/users/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email":"rtolinggi91@gmail.com",
+  "password":"password"
+}
+
+###
+GET http://127.0.0.1:5000/api/goals
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjE2ZGJjYjc2OWExMmIzYzI2ODA1ZSIsImlhdCI6MTY0Njc1NzEwOCwiZXhwIjoxNjQ2NzU3MTI4fQ.A0u8uSFfwOYRMyhvadtroqh7dTQ_4Q33SJYDPTrWbkM
+
+###
+GET http://127.0.0.1:5000/api/karyawan
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmVmOTdhOTdmMGMyNjFkMjlmZjEzNSIsImlhdCI6MTY0ODQ1MjgxNiwiZXhwIjoxNjQ4NDUyODM2fQ.gv79s08Un3U-WkU10t0wOPNTUA7T4bGOlzWyFLnnxr0
+
+
+###
+GET http://127.0.0.1:5000/api/users/token
+
+###
+DELETE http://127.0.0.1:5000/api/users/logout
+
+###
+PUT http://127.0.0.1:5000/api/users/forgotpassword
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email":"rtolinggi91@gmail.com"
+}
+
+###
+POST  http://127.0.0.1:5000/api/karyawan
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmVmOTdhOTdmMGMyNjFkMjlmZjEzNSIsImlhdCI6MTY0ODQ1MTg2NSwiZXhwIjoxNjQ4NDUxODg1fQ.XHbTSqwlVZDkWw1Sd64oKjB2EmYN8OfcsTNO9rCJrE4
+
+{
+  "name":"Stevi Hebel Mait",
+  "nik":95364,
+  "position":"Coordinator I",
+  "active":true,
+  "noContact":"081351441899"
+}
+
+###
+DELETE  http://127.0.0.1:5000/api/karyawan/6241612671edfd092b451347
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmVmOTdhOTdmMGMyNjFkMjlmZjEzNSIsImlhdCI6MTY0ODQ1Mjc2MiwiZXhwIjoxNjQ4NDUyNzgyfQ.jwLpMbzroVROXs96BSC-fL0zWT1D8uOMxfqh_Ymg9hw
+
+###
+PUT  http://127.0.0.1:5000/api/karyawan/6241612671edfd092b451347
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmVmOTdhOTdmMGMyNjFkMjlmZjEzNSIsImlhdCI6MTY0ODQ1MjA4MywiZXhwIjoxNjQ4NDUyMTAzfQ.CTL3iRu7tRm5hy8Im1vpaxgZ0k-L6mShjPeJ6luO63Q
+
+{
+  "name":"Stevi Mait",
+  "nik":95364,
+  "position":"Coordinator I",
+  "active":true,
+  "noContact":"081351441899"
+}
