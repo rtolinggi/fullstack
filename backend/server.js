@@ -7,11 +7,7 @@ import cookieParser from "cookie-parser";
 import "dotenv/config";
 import cors from "cors";
 
-const whiteList = [
-  "https://herbalsehat.store",
-  "http://localhost:3000",
-  "https://glittery-zuccutto-84388f.netlify.app",
-];
+const whiteList = ["http://localhost:3000"];
 const corsOptions = {
   origin: (origin, callback) => {
     if (whiteList.indexOf(origin) !== -1 || !origin) {
@@ -21,7 +17,6 @@ const corsOptions = {
     }
   },
   credentials: true,
-  exposedHeaders: ["set-cookie"],
 };
 
 const app = express();

@@ -30,7 +30,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjE2ZGJjY
 
 ###
 GET http://127.0.0.1:5000/api/karyawan
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmVmOTdhOTdmMGMyNjFkMjlmZjEzNSIsImlhdCI6MTY0ODQ1MjgxNiwiZXhwIjoxNjQ4NDUyODM2fQ.gv79s08Un3U-WkU10t0wOPNTUA7T4bGOlzWyFLnnxr0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNGE5NTQ5ZTIzNDk0NzdmMTRjMGRiOCIsImlhdCI6MTY0OTA1Nzk2NCwiZXhwIjoxNjQ5MDU3OTg0fQ.OEzngmE38nBgtPxJgsrbPOtsWCkBLZLYz8lbmezdSKs
 
 
 ###
@@ -52,7 +52,7 @@ Content-Type: application/json
 POST  http://127.0.0.1:5000/api/karyawan
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmVmOTdhOTdmMGMyNjFkMjlmZjEzNSIsImlhdCI6MTY0ODQ1MTg2NSwiZXhwIjoxNjQ4NDUxODg1fQ.XHbTSqwlVZDkWw1Sd64oKjB2EmYN8OfcsTNO9rCJrE4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNGE5NTQ5ZTIzNDk0NzdmMTRjMGRiOCIsImlhdCI6MTY0OTA1Nzk0MSwiZXhwIjoxNjQ5MDU3OTYxfQ.ePbv9xp0cijKjZgGr68Xj_sRdW9xUbeAS7Jovg9Zk0c
 
 {
   "name":"Stevi Hebel Mait",
@@ -70,7 +70,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmVmOTdhO
 PUT  http://127.0.0.1:5000/api/karyawan/6241612671edfd092b451347
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmVmOTdhOTdmMGMyNjFkMjlmZjEzNSIsImlhdCI6MTY0ODQ1MjA4MywiZXhwIjoxNjQ4NDUyMTAzfQ.CTL3iRu7tRm5hy8Im1vpaxgZ0k-L6mShjPeJ6luO63Q
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNGE5NTQ5ZTIzNDk0NzdmMTRjMGRiOCIsImlhdCI6MTY0OTA1NzkxMSwiZXhwIjoxNjQ5MDU3OTMxfQ.p9_3vPCbJ87yuPZJtuVX-l3aD3tyjbbarWmYLrcls3c
 
 {
   "name":"Stevi Mait",
