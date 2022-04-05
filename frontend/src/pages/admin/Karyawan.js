@@ -40,7 +40,7 @@ const Karyawan = () => {
       }
     };
     getDataKaryawan();
-  }, []);
+  }, [dispatch, token.token]);
 
   return (
     <>
