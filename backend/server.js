@@ -10,11 +10,15 @@ import cookieParser from "cookie-parser";
 import "dotenv/config";
 import cors from "cors";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 const whiteList = [
-  "http://localhost:3000",
+  "https://herbalsehat.store",
   "https://localhost:3000",
   "https://localhost",
-  "https://fullstack-kmb.herokuapp.com/",
+  "https://glittery-zuccutto-84388f.netlify.app",
+  "https://fullstack-kmb.herokuapp.com",
 ];
 const corsOptions = {
   origin: (origin, callback) => {
@@ -25,6 +29,7 @@ const corsOptions = {
     }
   },
   credentials: true,
+  exposedHeaders: ["set-cookie"],
 };
 
 const app = express();
