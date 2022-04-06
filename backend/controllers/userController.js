@@ -107,7 +107,6 @@ const loginUser = expressAsyncHandler(async (req, res) => {
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       maxAge: 30 * 24 * 60 * 60 * 1000,
-      secure: true,
     });
     res.status(200).json({
       success: true,

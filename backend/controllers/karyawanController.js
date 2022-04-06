@@ -95,7 +95,7 @@ const deleteKaryawan = expressAsyncHandler(async (req, res) => {
     throw new Error("Id Not Found");
   }
 
-  await karyawan.remove();
+  await karyawan.remove(karyawan._id);
   return res
     .status(200)
     .json({ success: true, msg: `Data id ${req.params.id} has deleted` });

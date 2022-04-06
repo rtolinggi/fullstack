@@ -10,6 +10,7 @@ import cookieParser from "cookie-parser";
 import "dotenv/config";
 import cors from "cors";
 
+<<<<<<< HEAD
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -18,6 +19,9 @@ const whiteList = [
   "http://localhost:3000",
   "https://glittery-zuccutto-84388f.netlify.app",
 ];
+=======
+const whiteList = ["http://localhost:3000"];
+>>>>>>> 09a96d9df590f28395b19ac4e4b64ad121a65995
 const corsOptions = {
   origin: (origin, callback) => {
     if (whiteList.indexOf(origin) !== -1 || !origin) {
@@ -27,7 +31,6 @@ const corsOptions = {
     }
   },
   credentials: true,
-  exposedHeaders: ["set-cookie"],
 };
 
 const app = express();
