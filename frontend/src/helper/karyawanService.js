@@ -10,8 +10,13 @@ const getAllKaryawan = async (config) => {
   const response = await axiosConfig.get("/", config);
   return response.data;
 };
+const deleteKaryawan = async (config) => {
+  const response = await axiosConfig.delete("/", config);
+  return response.data;
+};
 
 const karyawanService = {
   getAllKaryawan,
+  deleteKaryawan,
 };
 export default karyawanService;

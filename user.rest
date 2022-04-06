@@ -63,8 +63,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNGE5NTQ5Z
 }
 
 ###
-DELETE  http://127.0.0.1:5000/api/karyawan/6241612671edfd092b451347
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmVmOTdhOTdmMGMyNjFkMjlmZjEzNSIsImlhdCI6MTY0ODQ1Mjc2MiwiZXhwIjoxNjQ4NDUyNzgyfQ.jwLpMbzroVROXs96BSC-fL0zWT1D8uOMxfqh_Ymg9hw
+DELETE  http://127.0.0.1:5000/api/karyawan/624bbd20fd38232daa5858d4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNGE5NTQ5ZTIzNDk0NzdmMTRjMGRiOCIsImlhdCI6MTY0OTE0NDI3MywiZXhwIjoxNjQ5MTQ0MjkzfQ.gX26sNhyMkVH-QTGNOERoa8Y2IKbSomE5aipZ84jZQ4
 
 ###
 PUT  http://127.0.0.1:5000/api/karyawan/6241612671edfd092b451347

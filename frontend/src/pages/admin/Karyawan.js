@@ -1,18 +1,27 @@
-import { UserAddIcon } from "@heroicons/react/solid";
+import { PencilIcon, UserAddIcon } from "@heroicons/react/solid";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import jwtDecode from "jwt-decode";
 import { getToken } from "../../features/token/tokenSlice";
-import { getKaryawan } from "../../features/karyawan/karyawanSlice";
+import {
+  deleteKaryawan,
+  getKaryawan,
+} from "../../features/karyawan/karyawanSlice";
+import { FaTrash } from "react-icons/fa";
 
 const Karyawan = () => {
   const dispatch = useDispatch();
   const clickRef = React.useRef(null);
   const { token } = useSelector((state) => ({ ...state.token }));
-  const { karyawan } = useSelector((state) => ({
-    ...state.karyawan,
-  }));
-  console.log(karyawan);
+  const { karyawan } = useSelector((state) => state.karyawan);
+
+  const handleDelete = (id) => {
+    dispatch(
+      deleteKaryawan({
+        params: id,
+      })
+    );
+  };
 
   useEffect(() => {
     const getDataKaryawan = async () => {
@@ -104,6 +113,9 @@ const Karyawan = () => {
                   <th scope='col' className='px-6 py-3'>
                     ACTIVE
                   </th>
+                  <th scope='col' className='px-6 py-3'>
+                    ACTIONS
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -128,35 +140,22 @@ const Karyawan = () => {
                               <div className='w-4 h-4 bg-red-600'></div>
                             )}
                           </td>
+                          <td className='px-6 py-4'>
+                            <button
+                              className='p-1 bg-emerald-600 rounded hover:bg-emerald-500 mr-1'
+                              onClick={() => console.log(token?.token)}>
+                              <PencilIcon className='w-4 h-4 text-gray-200' />
+                            </button>
+                            <button
+                              className='p-1 bg-red-600 rounded hover:bg-red-500'
+                              onClick={() => handleDelete(el._id)}>
+                              <FaTrash className='w-4 h-4 text-gray-200' />
+                            </button>
+                          </td>
                         </tr>
                       );
                     })
                   : "Loading"}
-
-                {/* <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                  <td className="w-4 p-4">2</td>
-                  <th
-                    scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
-                  >
-                    Microsoft Surface Pro
-                  </th>
-                  <td className="px-6 py-4">White</td>
-                  <td className="px-6 py-4">Laptop PC</td>
-                  <td className="px-6 py-4">$1999</td>
-                </tr>
-                <tr className="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-                  <td className="w-4 p-4">3</td>
-                  <th
-                    scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
-                  >
-                    Magic Mouse 2
-                  </th>
-                  <td className="px-6 py-4">Black</td>
-                  <td className="px-6 py-4">Accessories</td>
-                  <td className="px-6 py-4">$99</td>
-                </tr> */}
               </tbody>
             </table>
           </div>
