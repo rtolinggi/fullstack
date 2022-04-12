@@ -16,11 +16,12 @@ const Karyawan = () => {
   const { karyawan } = useSelector((state) => state.karyawan);
 
   const handleDelete = (id) => {
-    dispatch(
-      deleteKaryawan({
-        params: id,
-      })
-    );
+    console.log(id);
+    // dispatch(
+    //   deleteKaryawan({
+    //     params: id,
+    //   })
+    // );
   };
 
   useEffect(() => {
