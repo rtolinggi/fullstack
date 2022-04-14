@@ -28,9 +28,9 @@ export const getKaryawan = createAsyncThunk(
 
 export const deleteKaryawan = createAsyncThunk(
   "karyawan/deleteKaryawan",
-  async (config, { rejectWithValue }) => {
+  async (id, { rejectWithValue }) => {
     try {
-      return await karyawanService.deleteKaryawan(config);
+      return await karyawanService.deleteKaryawan(id);
     } catch (error) {
       const message =
         (error.response &&

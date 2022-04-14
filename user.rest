@@ -20,7 +20,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "email":"rtolinggi91@gmail.com",
+  "email":"lovelytolinggi@gmail.com",
   "password":"password"
 }
 
@@ -52,12 +52,12 @@ Content-Type: application/json
 POST  http://127.0.0.1:5000/api/karyawan
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNGE5NTQ5ZTIzNDk0NzdmMTRjMGRiOCIsImlhdCI6MTY0OTA1Nzk0MSwiZXhwIjoxNjQ5MDU3OTYxfQ.ePbv9xp0cijKjZgGr68Xj_sRdW9xUbeAS7Jovg9Zk0c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjg3NWIyYjAxNWM1MzkwNjg1NDRkMyIsImlhdCI6MTY0OTk2MjU4NCwiZXhwIjoxNjQ5OTYyNjA0fQ.z-nRazBZ_JjseUbBHrpIsCn7jCInbtSWNhoD5xSjCXQ
 
 {
-  "name":"Stevi Hebel Mait",
-  "nik":95364,
-  "position":"Coordinator I",
+  "name":"Rio Tolinggi",
+  "nik":96388,
+  "position":"Coordinator II",
   "active":true,
   "noContact":"081351441899"
 }

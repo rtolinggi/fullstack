@@ -1,17 +1,16 @@
-import axios from "axios";
+import axiosJWT from "./axiosJWT";
+
 const API_URL = "http://localhost:5000/api/karyawan";
 
-const axiosConfig = axios.create({
-  baseURL: API_URL,
-  withCredentials: true,
-});
-
 const getAllKaryawan = async (config) => {
-  const response = await axiosConfig.get("/", config);
+  const response = await axiosJWT.get((config.API_URL = API_URL), config);
   return response.data;
 };
 const deleteKaryawan = async (config) => {
-  const response = await axiosConfig.delete("/", config);
+  const response = await axiosJWT.delete(
+    (config.API_URL = `${API_URL}/${config.id}`),
+    config
+  );
   return response.data;
 };
 
