@@ -13,13 +13,7 @@ import cors from "cors";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const whiteList = [
-  "https://herbalsehat.store",
-  "https://localhost:3000",
-  "https://localhost",
-  "https://glittery-zuccutto-84388f.netlify.app",
-  "https://fullstack-kmb.herokuapp.com",
-];
+const whiteList = ["http://localhost:3000"];
 const corsOptions = {
   origin: (origin, callback) => {
     if (whiteList.indexOf(origin) !== -1 || !origin) {
