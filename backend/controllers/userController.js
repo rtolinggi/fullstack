@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import expressAsyncHandler from "express-async-handler";
 import { Users, Token } from "../models/index.js";
-import { generateToken, resetToken } from "./tokenController.js";
+import { accessToken, resetToken } from "./tokenController.js";
 import emailConfig from "../email/config.js";
 import crypto from "crypto";
 
@@ -71,29 +71,29 @@ const loginUser = expressAsyncHandler(async (req, res) => {
 
   //ceheck req email n password
   if (!email || !password) {
-    res.status(401);
-    throw new Error("Email and Password is Required");
+    res
+      .status(401)
+      .json({ success: false, msg: "Email and Password is Required" });
   }
 
   //check email
   const user = await Users.findOne({ email });
   if (!user) {
-    res.status(401);
-    throw new Error("Email Not Found");
+    res.status(401).json({ success: false, msg: "Email Not Found" });
   }
 
   // check verified email
   const checkLoginEmailVerified = process.env.EMAIL_VERIFIED_LOGIN;
   if (checkLoginEmailVerified == "true") {
     if (!user.verified) {
-      res.status(401);
-      throw new Error("Email Not Verified");
+      return res
+        .status(401)
+        .json({ success: false, msg: "Email Not Verified" });
     }
   }
 
   if (user && !(await bcrypt.compare(password, user.password))) {
-    res.status(401);
-    throw new Error("Invalid Credential");
+    res.status(401).json({ success: false, msg: "Invalid Credential" });
   }
 
   if (user && (await bcrypt.compare(password, user.password))) {
@@ -107,17 +107,17 @@ const loginUser = expressAsyncHandler(async (req, res) => {
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       maxAge: 30 * 24 * 60 * 60 * 1000,
-      secure:true
     });
     res.status(200).json({
       success: true,
-      msg: "Login Succes",
+      msg: "Login Success",
       user: {
         _id: user.id,
         name: user.name,
         email: user.email,
       },
-      token: generateToken(user._id),
+      acces_token: accessToken(user._id),
+      refresh_token: resetToken(user.id),
     });
   } else {
     res.status(500);
@@ -142,14 +142,15 @@ const getMe = expressAsyncHandler(async (req, res) => {
 //@access   Public
 const Logout = expressAsyncHandler(async (req, res) => {
   const refreshToken = req.cookies.refreshToken;
+  // Get Cookie
   if (!refreshToken) {
-    res.status(401);
-    throw new Error("Youre Not Login");
+    res.status(401).json({ success: false, msg: "Youre Not Login" });
   }
+
+  // Get User by Token
   const user = await Users.findOne({ refresh_token: refreshToken }).exec();
   if (!user) {
-    res.status(401);
-    throw new Error("Token Not Valid");
+    res.status(401).json({ success: false, msg: "Token Not Valid" });
   }
   try {
     await Users.findByIdAndUpdate(

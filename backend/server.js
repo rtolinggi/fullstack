@@ -7,13 +7,7 @@ import cookieParser from "cookie-parser";
 import "dotenv/config";
 import cors from "cors";
 
-const whiteList = [
-                   "http://localhost:3000",
-                   "https://collection-kmb.netlify.app",
-                   "https://collection-kmb.netlify.app:3000",
-                    "https://fullstack-kmb.herokuapp.com",
-                    "*.herokuapp.com"  
-                  ];
+const whiteList = ["http://localhost:3000"];
 const corsOptions = {
   origin: (origin, callback) => {
     if (whiteList.indexOf(origin) !== -1 || !origin) {

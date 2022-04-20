@@ -26,11 +26,10 @@ Content-Type: application/json
 
 ###
 GET http://127.0.0.1:5000/api/goals
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjE2ZGJjYjc2OWExMmIzYzI2ODA1ZSIsImlhdCI6MTY0Njc1NzEwOCwiZXhwIjoxNjQ2NzU3MTI4fQ.A0u8uSFfwOYRMyhvadtroqh7dTQ_4Q33SJYDPTrWbkM
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjE2ZGJjYjc2OWExMmIzYzI2ODA1ZSIsImlhdCI6MTY1MDQzOTU4NywiZXhwIjoxNjUwNDM5NjA3fQ.moxJuGKMgduc9OIvvCfP7zwMhbrbyRKAgDxd3qVjxdk
 ###
 GET http://127.0.0.1:5000/api/karyawan
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNGE5NTQ5ZTIzNDk0NzdmMTRjMGRiOCIsImlhdCI6MTY0OTEyNjE5MSwiZXhwIjoxNjQ5MTI2MjExfQ.pDWSbe_6IX4V9CMCE-vIzHCTbEUYXEZYWweOP095vPE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjE2ZGJjYjc2OWExMmIzYzI2ODA1ZSIsImlhdCI6MTY1MDQzOTYxNSwiZXhwIjoxNjUwNDM5NjM1fQ.SpkgdDJhF1_cy3Sqsq-50yvBI2Ay-rwyvdoouGkV9zA
 
 
 ###

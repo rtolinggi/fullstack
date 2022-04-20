@@ -3,34 +3,32 @@ import jwt from "jsonwebtoken";
 
 const refreshToken = async (req, res) => {
   const refreshToken = req.cookies.refreshToken;
-  if (!refreshToken || refreshToken === undefined) {
-    return res.status(200).json({ success: false, msg: "Youre Not Login" });
+  if (!refreshToken) {
+    return res.status(401).json({ success: false, msg: "Not Authorization" });
   }
   const user = await Users.findOne({ refresh_token: refreshToken }).exec();
   if (!user) {
-    return res.status(200).json({ success: false, msg: "Token Not Valid" });
+    return res.status(401).json({ success: false, msg: "Token Not Valid" });
   } else {
     jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET, (err, decode) => {
-      const accesToken = generateToken(user._id);
-      res
-        .status(200)
-        .json({ success: true, msg: "success", token: accesToken });
+      const accesToken = accessToken(user._id);
+      res.status(200).json({ success: true, token: accesToken });
     });
   }
 };
 
-//Generate Token
-const generateToken = (id) => {
+//Generate access Token
+const accessToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: "20s",
+    expiresIn: "60s",
   });
 };
 
-//Refresh Token
+//Generate Refresh Token
 const resetToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_REFRESH_SECRET, {
     expiresIn: "30d",
   });
 };
 
-export { refreshToken, resetToken, generateToken };
+export { refreshToken, resetToken, accessToken };

@@ -1,6 +1,6 @@
 import { LogoutIcon, MenuIcon, UserIcon } from "@heroicons/react/solid";
 import userIcon from "../assets/images/user-round.svg";
-import React, { useEffect } from "react";
+import React from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -12,21 +12,21 @@ import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const { isSuccess } = useSelector((state) => state.auth);
   const dashboard = useSelector((state) => state.dashboard);
   const handleShowSidebar = () => {
     dashboard.showSidebar ? dispatch(closeSidebar()) : dispatch(openSidebar());
   };
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (isSuccess) {
-      navigate("/");
-    }
-  }, [isSuccess, navigate]);
-
   const handleLogout = () => {
-    dispatch(logout());
+    dispatch(logout())
+      .then((res) => {
+        const result = res.payload;
+        return result;
+      })
+      .then((result) => {
+        if (result.success) return navigate("/");
+      });
   };
 
   return (

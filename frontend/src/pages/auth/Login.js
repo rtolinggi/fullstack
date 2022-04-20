@@ -33,8 +33,10 @@ const Login = () => {
     if (isSuccess || user) {
       navigate("/admin");
     }
-    dispatch(reset());
-  }, [dispatch, navigate, isSuccess, user]);
+    return () => {
+      dispatch(reset());
+    };
+  }, [dispatch, isSuccess, navigate, user]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({

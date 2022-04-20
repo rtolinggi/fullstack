@@ -20,7 +20,7 @@ const Dashboard = () => {
           navigate("/");
         }
       });
-  }, [dispatch, navigate]);
+  }, []);
 
   return (
     <div className=' bg-gray-50 mt-12 mx-8 py-8 px-6 rounded-xl'>
