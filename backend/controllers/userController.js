@@ -42,7 +42,7 @@ const registerUser = expressAsyncHandler(async (req, res) => {
       token: crypto.randomBytes(32).toString("hex"),
     });
     let url = `${process.env.BASE_URL}api/users/${user._id}/verify/${token.token}`;
-    await emailConfig(
+    emailConfig(
       user.email,
       "Verify email",
       `<h3>Please Click Link Bottom to Verify youre Email</h3>
@@ -107,11 +107,6 @@ const loginUser = expressAsyncHandler(async (req, res) => {
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       maxAge: 30 * 24 * 60 * 60 * 1000,
-<<<<<<< HEAD
-      secure: true,
-=======
-      secure:true
->>>>>>> 53bb1c54c532f52dac914b4d91dfd13def3d8f3a
     });
     res.status(200).json({
       success: true,

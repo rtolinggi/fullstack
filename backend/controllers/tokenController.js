@@ -9,14 +9,11 @@ const refreshToken = async (req, res) => {
   const user = await Users.findOne({ refresh_token: refreshToken }).exec();
   if (!user) {
     return res.status(200).json({ success: false, msg: "Token Not Valid" });
-  } else {
-    jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET, (err, decode) => {
-      const accesToken = generateToken(user._id);
-      res
-        .status(200)
-        .json({ success: true, msg: "success", token: accesToken });
-    });
   }
+  jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET, (err, decode) => {
+    const accesToken = generateToken(user._id);
+    res.status(200).json({ success: true, token: accesToken });
+  });
 };
 
 //Generate Token

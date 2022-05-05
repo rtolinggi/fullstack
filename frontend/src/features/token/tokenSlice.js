@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import tokenService from "../../helper/tokenService";
+import tokenService from "../../hooks/tokenService";
 
 const initialState = {
   token: null,

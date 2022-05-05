@@ -10,20 +10,10 @@ import cookieParser from "cookie-parser";
 import "dotenv/config";
 import cors from "cors";
 
-<<<<<<< HEAD
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const whiteList = ["http://localhost:3000"];
-=======
-const whiteList = [
-                   "http://localhost:3000",
-                   "https://collection-kmb.netlify.app",
-                   "https://collection-kmb.netlify.app:3000",
-                    "https://fullstack-kmb.herokuapp.com",
-                    "*.herokuapp.com"  
-                  ];
->>>>>>> 53bb1c54c532f52dac914b4d91dfd13def3d8f3a
 const corsOptions = {
   origin: (origin, callback) => {
     if (whiteList.indexOf(origin) !== -1 || !origin) {

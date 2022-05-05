@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import karyawanService from "../../helper/karyawanService";
+import karyawanService from "../../hooks/karyawanService";
 
 const initialState = {
   karyawan: null,
